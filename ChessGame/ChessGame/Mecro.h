@@ -1,0 +1,39 @@
+#pragma once
+#include<vector>
+#include<Windows.h>
+using namespace std;
+
+
+enum PIECEBLOCK
+{
+	PIECEBLOCK_PAWN,
+	PIECEBLOCK_KNIGHT,
+	PIECEBLOCK_BISHOP,
+	PIECEBLOCK_ROOK,
+	PIECEBLOCK_QUEEN,
+	PIECEBLOCK_KING,
+};	  
+
+enum BOARDBLOCK
+{
+	BOARDBLOCK_LIGHT,
+	BOARDBLOCK_DARK,
+	BOARDBLOCK_END = 2
+};
+
+enum PIECECOLOR
+{
+	PIECECOLOR_B,
+	PIECECOLOR_W,
+	PIECECOLOR_END = 2
+ };
+
+enum IMG
+{
+	IMG_START,
+	IMG_BRDBLOCK = 3,
+	IMG_BPIECE = 6,
+	IMG_WPIECE = 6,
+	IMG_MAX = 15,
+	IMG_END
+};
