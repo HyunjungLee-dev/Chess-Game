@@ -18,20 +18,23 @@ void BitmapManager::Init(HWND hWnd)
 		if (bpiece < IMG_BPIECE)
 		{
 			m_pBlcPiece.push_back(new Bitmap);
-			wsprintf(buf, L"Chess//block_b_0%d.bmp", bpiece++);
+			wsprintf(buf, L"Chess//block_b_0%d.bmp", bpiece);
 			m_pBlcPiece[bpiece]->Init(hdc, buf);
+			bpiece++;
 		}
 		else if (wpiece < IMG_WPIECE)
 		{
 			m_pWhiPiece.push_back(new Bitmap);
-			wsprintf(buf, L"Chess//block_w_0%d.bmp", wpiece++);
+			wsprintf(buf, L"Chess//block_w_0%d.bmp", wpiece);
 			m_pWhiPiece[wpiece]->Init(hdc, buf);
+			wpiece++;
 		}
 		else if (brdblock < IMG_BRDBLOCK)
 		{
 			m_pBrdBlock.push_back(new Bitmap);
-			wsprintf(buf, L"Chess//block0%d.bmp", brdblock++);
-			m_pWhiPiece[brdblock]->Init(hdc, buf);
+			wsprintf(buf, L"Chess//block0%d.bmp", brdblock);
+			m_pBrdBlock[brdblock]->Init(hdc, buf);
+			brdblock++;
 		}
 
 	}

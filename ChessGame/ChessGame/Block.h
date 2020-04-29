@@ -104,7 +104,7 @@ public:
 class Light : public Block
 {
 private:
-	int m_ix, m_iy;
+	float m_ix, m_iy;
 	Bitmap* m_pBitmap;
 	BOARDBLOCK m_brdbckType;
 	RECT m_brdBckRect;
@@ -118,7 +118,7 @@ public:
 class Dark : public  Block
 {
 private:
-	int m_ix, m_iy;
+	float m_ix, m_iy;
 	Bitmap* m_pBitmap;
 	BOARDBLOCK m_brdbckType;
 	RECT m_brdBckRect;

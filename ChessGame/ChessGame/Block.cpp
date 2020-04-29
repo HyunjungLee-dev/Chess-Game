@@ -101,6 +101,7 @@ void Dark::SetBlock(int x, int y)
 
 	m_ix = x;
 	m_iy = y;
+
 	m_brdBckRect.left = x;
 	m_brdBckRect.top = y;
 	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx;

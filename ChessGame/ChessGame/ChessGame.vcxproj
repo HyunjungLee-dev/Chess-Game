@@ -92,6 +92,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,6 +144,7 @@
     <ClInclude Include="BitmapManager.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="ChessBoard.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
@@ -152,6 +154,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ChessMain.cpp" />
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -23,8 +23,8 @@ void Bitmap::Init(HDC hdc, LPCWSTR FileName)
 
 void Bitmap::Draw(HDC hdc, int nX, int nY)
 {
-	TransparentBlt(hdc, nX, nY, m_size.cx, m_size.cy,
-		MemDC, m_size.cx, m_size.cy , m_size.cx , m_size.cy, RGB(255, 0, 255));
+	TransparentBlt(hdc, nX*0.5, nY*0.5, m_size.cx*0.5, m_size.cy*0.5,
+		MemDC, 0, 0, m_size.cx , m_size.cy, RGB(255, 0, 255));
 }
 
 Bitmap::~Bitmap()

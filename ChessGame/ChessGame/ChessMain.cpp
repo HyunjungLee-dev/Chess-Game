@@ -1,4 +1,5 @@
 #include"Mecro.h"
+#include"GameManager.h"
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = TEXT("ChessGame");
@@ -39,11 +40,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
 	PAINTSTRUCT ps;
+	static GameManager gameManager;
 	POINT point;
 
 	switch (iMessage)
 	{
 	case WM_CREATE:
+		gameManager.Init(hWnd);
 		return 0;
 	case WM_TIMER:
 		switch (wParam) {
@@ -59,6 +62,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
+		gameManager.Draw(hdc);
 		EndPaint(hWnd, &ps);
 		return 0;
 	case WM_DESTROY:
