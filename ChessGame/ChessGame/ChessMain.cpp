@@ -10,7 +10,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPervlnstance, LPSTR lpszCmd
 	MSG Message;
 	WNDCLASS WndClass;
 	g_hInst = hInstance;
-	RECT rt = { 0, 0, 580 ,600 }; // 화면 크기 설정
+	RECT rt = { 0, 0, 500 ,500 }; // 화면 크기 설정
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 
 	WndClass.cbClsExtra = 0;

@@ -144,6 +144,7 @@
     <ClInclude Include="BitmapManager.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="ChessBoard.h" />
+    <ClInclude Include="ChessPiece.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="Singleton.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ChessMain.cpp" />
+    <ClCompile Include="ChessPiece.cpp" />
     <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

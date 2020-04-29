@@ -6,7 +6,7 @@ ChessBoard::ChessBoard()
 {
 }
 
-void ChessBoard::SetBlock(int x, int y)
+void ChessBoard::SetPos(int x, int y)
 {
 	int index = 0;
 
@@ -22,8 +22,8 @@ void ChessBoard::SetBlock(int x, int y)
 			{
 				ChessBrd.push_back(AddBlock(BOARDBLOCK_DARK));
 			}
-			ChessBrd[index]->SetBlock((j + x)* Block_WIDTH
-				, (i + y) * Block_HEIGHT);
+			ChessBrd[index]->SetPos((j + x)* BLOCK_WIDTH
+				, (i + y) * BLOCK_HEIGHT);
 			index++;
 		}
 	}

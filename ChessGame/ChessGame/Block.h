@@ -5,25 +5,28 @@
 class Block
 {
 public:
-	virtual void SetBlock(int x, int y) = 0; // Bitmap 이미지 SET , TYPE SET
+	virtual void SetPos(int x, int y) = 0;// 좌표
 	virtual void Draw(HDC hdc) = 0; // 이미지 그리기
-	Block();
+	Block();// Bitmap 이미지 SET , TYPE SET
+	virtual void SetColor(COLOR color) = 0;
 	virtual ~Block();
 };
 
-/*Piece*/
+/*Piece*/	//컬러를 따로
 
 class King : public Block
 {
 	private:
 		int m_ix, m_iy;
-		Bitmap* m_pBitmap[PIECECOLOR_END];
-		PIECEBLOCK m_PieceType;
+		Bitmap* m_pBitmap[COLOR_END];
+		PIECEBLOCK m_ePieceType;
+		COLOR m_eColor;
 		RECT m_PiecekRect;
 	public:
-		virtual void SetBlock(int x, int y);
+		virtual void SetPos(int x, int y);
 		virtual void Draw(HDC hdc);
-		King() {};
+		virtual void SetColor(COLOR color) { m_eColor = color; }
+		King();
 		virtual ~King() {};
 
  };
@@ -32,13 +35,15 @@ class Queen : public Block
 {
 private:
 	int m_ix, m_iy;
-	Bitmap* m_pBitmap[PIECECOLOR_END];
+	Bitmap* m_pBitmap[COLOR_END];
 	PIECEBLOCK m_PieceType;
+	COLOR m_eColor;
 	RECT m_PiecekRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Queen() {};
+	virtual void SetColor(COLOR color) { m_eColor = color; }
+	Queen();
 	virtual ~Queen() {};
 
 };
@@ -47,13 +52,15 @@ class Rook : public Block
 {
 private:
 	int m_ix, m_iy;
-	Bitmap* m_pBitmap[PIECECOLOR_END];
+	Bitmap* m_pBitmap[COLOR_END];
 	PIECEBLOCK m_PieceType;
+	COLOR m_eColor;
 	RECT m_PiecekRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Rook() {};
+	virtual void SetColor(COLOR color) { m_eColor = color; }
+	Rook();
 	virtual ~Rook() {};
 };
 
@@ -61,13 +68,15 @@ class Bishop : public Block
 {
 private:
 	int m_ix, m_iy;
-	Bitmap* m_pBitmap[PIECECOLOR_END];
+	Bitmap* m_pBitmap[COLOR_END];
 	PIECEBLOCK m_PieceType;
+	COLOR m_eColor;
 	RECT m_PiecekRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Bishop() {};
+	virtual void SetColor(COLOR color) { m_eColor = color; }
+	Bishop();
 	virtual ~Bishop() {};
 };
 
@@ -75,13 +84,15 @@ class Knight : public Block
 {
 private:
 	int m_ix, m_iy;
-	Bitmap* m_pBitmap[PIECECOLOR_END];
+	Bitmap* m_pBitmap[COLOR_END];
 	PIECEBLOCK m_PieceType;
+	COLOR m_eColor;
 	RECT m_PiecekRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Knight() {};
+	virtual void SetColor(COLOR color) { m_eColor = color; }
+	Knight();
 	virtual ~Knight() {};
 };
 
@@ -89,13 +100,15 @@ class Pawn : public Block
 {
 private:
 	int m_ix, m_iy;
-	Bitmap* m_pBitmap[PIECECOLOR_END];
+	Bitmap* m_pBitmap[COLOR_END];
 	PIECEBLOCK m_PieceType;
+	COLOR m_eColor;
 	RECT m_PiecekRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Pawn() {};
+	virtual void SetColor(COLOR color) { m_eColor = color; }
+	Pawn();
 	virtual ~Pawn() {};
 };
 
@@ -109,9 +122,10 @@ private:
 	BOARDBLOCK m_brdbckType;
 	RECT m_brdBckRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Light() {};
+	virtual void SetColor(COLOR color) {};
+	Light();
 	virtual ~Light() {};
 };
 
@@ -123,11 +137,14 @@ private:
 	BOARDBLOCK m_brdbckType;
 	RECT m_brdBckRect;
 public:
-	virtual void SetBlock(int x, int y);
+	virtual void SetPos(int x, int y);
 	virtual void Draw(HDC hdc);
-	Dark() {};
+	virtual void SetColor(COLOR color) {};
+	Dark();
 	virtual ~Dark() {};
 };
+
+/*Select Line*/
 
 //class Line : public Block
 //{
