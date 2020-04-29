@@ -89,6 +89,8 @@ Pawn::Pawn()
 
 void Pawn::SetPos(int x, int y)
 {
+
+
 	m_ix = x;
 	m_iy = y;
 	m_PiecekRect.left = x;

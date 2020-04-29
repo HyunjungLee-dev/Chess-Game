@@ -6,44 +6,88 @@ ChessPiece::ChessPiece()
 {
 }
 
-void ChessPiece::Init(int x, int y, COLOR color)	 // 할당 -> 색상 -> pos 
+void ChessPiece::Init(int x, int y, COLOR color)	
 {
-	SetPieceList();
 	SetColor(color);
 	SetPos(x, y);
 }
 
-void ChessPiece::SetPieceList()	
-{
-	// pawn 8개 king 1개, queen 1개 , knight 2개, bishop 2개, rook 2개
 
-	for (int i = PIECENUM_NONE; i < PIECENUM_ALL; i++)
+void ChessPiece::SetPos(int x, int y)	
+{
+	int index = 0;
+
+	for (int i = 0; i < 8; i++) // y
 	{
-		if (i >= PIECENUM_NONE && i < PIECENUM_PAWN)
-			ChessPieceList.push_back(AddPiece(PIECEBLOCK_PAWN));
+		for (int j = 0; j < 8; j++) // x
+		{
+			if (m_ePieceColor == COLOR_W)
+			{
+				if (i == 6) // 블랙 폰
+				{
+					ChessPieceList.push_back(AddPiece(PIECEBLOCK_PAWN));
+					SetColor(index);
+					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
+						, (i + y) * BLOCK_HEIGHT);
+					index++;
+				}
+				else if (i == 7)
+				{
+					if (j == 0 || j == 7) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_ROOK));
+					else if (j == 1 || j == 6) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KNIGHT));
+					else if (j == 2 || j == 5) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_BISHOP));
+					else if (j == 3) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_QUEEN));
+					else 
+					{
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KING));
+					}
+					SetColor(index);
+					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
+						, (i + y) * BLOCK_HEIGHT);
+					index++;
+				}
+			}
+			else if (m_ePieceColor == COLOR_B)
+			{
+				if (i == 1) 
+				{
+					ChessPieceList.push_back(AddPiece(PIECEBLOCK_PAWN));
+					SetColor(index);
+					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
+						, (i + y) * BLOCK_HEIGHT);
+					index++;
+				}
+				else if (i == 0)
+				{
+					if (j == 0 || j == 7) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_ROOK));
+					else if (j == 1 || j == 6) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KNIGHT));
+					else if (j == 2 || j == 5) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_BISHOP));
+					else if (j == 3) 
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_QUEEN));
+					else 
+					{
+						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KING));
+					}
+					SetColor(index);
+					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
+						, (i + y) * BLOCK_HEIGHT);
+					index++;
+				}
+			}
+		}
 	}
 }
 
-void ChessPiece::SetPos(int x, int y)	//모든 피스 개별 피스 위치   주기
+void ChessPiece::SetColor(int index)	//개별 피스의 색상 
 {
-	if (m_ePieceColor == COLOR_B)
-	{
-
-	}
-	else if(m_ePieceColor == COLOR_W)
-	{
-
-	}
-
-}
-
-void ChessPiece::SetColor(COLOR color)	//개별 피스의 색상 
-{
-	m_ePieceColor = color;
-	for (vector<Block*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
-	{
-		(*it)->SetColor(m_ePieceColor);
-	}
+	ChessPieceList[index]->SetColor(m_ePieceColor);
 }
 
 void ChessPiece::Draw(HDC hdc)
