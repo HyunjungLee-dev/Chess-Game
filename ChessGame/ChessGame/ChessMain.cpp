@@ -59,6 +59,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONDOWN:
 		point.x = LOWORD(lParam);
 		point.y = HIWORD(lParam);
+		gameManager.GamePlay(hWnd, point);
 		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);

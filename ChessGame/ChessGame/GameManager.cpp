@@ -4,34 +4,50 @@
 
 GameManager::GameManager()
 {
-	m_iGameTrun = 0;
+	m_iGameTurn = PLAYER_WHITE;
 }
 
 void GameManager::Init(HWND hWnd)			// 비트맵 , 체스보드, 각각 플레이어의 기물
 {
 	BitmapManager::GetSingleton()->Init(hWnd);
 	m_Chessbrd.SetPos(0, 0);
-	m_Piece[COLOR_B].Init(0, 0, COLOR_B);
-	m_Piece[COLOR_W].Init(0, 0, COLOR_W);
+	m_player[PLAYER_BLACK].init(0, 0, COLOR_B);
+	m_player[PLAYER_WHITE].init(0, 0, COLOR_W);
 }
 
 void GameManager::Draw(HDC hdc)
 {
 	m_Chessbrd.Draw(hdc);
-	m_Piece[COLOR_B].Draw(hdc);
-	m_Piece[COLOR_W].Draw(hdc);
+	m_player[PLAYER_BLACK].GetPiece()->PieceListDraw(hdc);
+	m_player[PLAYER_WHITE].GetPiece()->PieceListDraw(hdc);
+	TurnLineDraw(hdc);
+
 }
 
 void GameManager::TurnLineDraw(HDC hdc)
 {
-	if (m_iGameTrun % 2 != 0) // 백
+	if (m_iGameTurn == PLAYER_WHITE) // 백
 	{
-
+		m_player[PLAYER_WHITE].SelectLineDraw(hdc);
 	}
 	else // 흑
 	{
-
+		m_player[PLAYER_BLACK].SelectLineDraw(hdc);
 	}
+}
+
+void GameManager::ClickCheck(POINT point)
+{
+	if (m_iGameTurn == PLAYER_WHITE) // 백
+	{
+	}
+	else // 흑
+	{
+	}
+}
+
+void GameManager::GamePlay(HWND hWnd, POINT point)
+{
 
 }
 

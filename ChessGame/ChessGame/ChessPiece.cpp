@@ -8,12 +8,12 @@ ChessPiece::ChessPiece()
 
 void ChessPiece::Init(int x, int y, COLOR color)	
 {
-	SetColor(color);
-	SetPos(x, y);
+	SetImgColor(color);
+	SetPieceListPos(x, y);
 }
 
 
-void ChessPiece::SetPos(int x, int y)	
+void ChessPiece::SetPieceListPos(int x, int y)
 {
 	int index = 0;
 
@@ -23,9 +23,9 @@ void ChessPiece::SetPos(int x, int y)
 		{
 			if (m_ePieceColor == COLOR_W)
 			{
-				if (i == 6) // 블랙 폰
+				if (i == 6) 
 				{
-					ChessPieceList.push_back(AddPiece(PIECEBLOCK_PAWN));
+					ChessPieceList.push_back(AddPiece(PIECETYPE_PAWN));
 					SetColor(index);
 					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
 						, (i + y) * BLOCK_HEIGHT);
@@ -34,16 +34,16 @@ void ChessPiece::SetPos(int x, int y)
 				else if (i == 7)
 				{
 					if (j == 0 || j == 7) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_ROOK));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_ROOK));
 					else if (j == 1 || j == 6) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KNIGHT));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_KNIGHT));
 					else if (j == 2 || j == 5) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_BISHOP));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_BISHOP));
 					else if (j == 3) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_QUEEN));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_QUEEN));
 					else 
 					{
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KING));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_KING));
 					}
 					SetColor(index);
 					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
@@ -55,7 +55,7 @@ void ChessPiece::SetPos(int x, int y)
 			{
 				if (i == 1) 
 				{
-					ChessPieceList.push_back(AddPiece(PIECEBLOCK_PAWN));
+					ChessPieceList.push_back(AddPiece(PIECETYPE_PAWN));
 					SetColor(index);
 					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
 						, (i + y) * BLOCK_HEIGHT);
@@ -64,16 +64,16 @@ void ChessPiece::SetPos(int x, int y)
 				else if (i == 0)
 				{
 					if (j == 0 || j == 7) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_ROOK));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_ROOK));
 					else if (j == 1 || j == 6) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KNIGHT));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_KNIGHT));
 					else if (j == 2 || j == 5) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_BISHOP));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_BISHOP));
 					else if (j == 3) 
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_QUEEN));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_QUEEN));
 					else 
 					{
-						ChessPieceList.push_back(AddPiece(PIECEBLOCK_KING));
+						ChessPieceList.push_back(AddPiece(PIECETYPE_KING));
 					}
 					SetColor(index);
 					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
@@ -87,38 +87,43 @@ void ChessPiece::SetPos(int x, int y)
 
 void ChessPiece::SetColor(int index)	//개별 피스의 색상 
 {
-	ChessPieceList[index]->SetColor(m_ePieceColor);
+	ChessPieceList[index]->SetImgColor(m_ePieceColor);
 }
 
-void ChessPiece::Draw(HDC hdc)
+void ChessPiece::PieceListDraw(HDC hdc)
 {
-	for (vector<Block*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
 	{
 		(*it)->Draw(hdc);
 	}
 }
 
+POINT ChessPiece::GetPiecePos(int index)
+{
+	return ChessPieceList[index]->GetPos();
+}
 
-Block* ChessPiece::AddPiece(PIECEBLOCK Type)
+
+Piece* ChessPiece::AddPiece(PIECETYPE Type)
 {
 	switch (Type)
 	{
-	case PIECEBLOCK_PAWN:
+	case PIECETYPE_PAWN:
 		return new Pawn;
 		break;
-	case PIECEBLOCK_KNIGHT:
+	case PIECETYPE_KNIGHT:
 		return new Knight;
 		break;
-	case PIECEBLOCK_BISHOP:
+	case PIECETYPE_BISHOP:
 		return new Bishop;
 		break;
-	case PIECEBLOCK_ROOK:
+	case PIECETYPE_ROOK:
 		return new Rook;
 		break;
-	case PIECEBLOCK_QUEEN:
+	case PIECETYPE_QUEEN:
 		return new Queen;
 		break;
-	case PIECEBLOCK_KING:
+	case PIECETYPE_KING:
 		return new King;
 		break;
 	default:
@@ -128,7 +133,7 @@ Block* ChessPiece::AddPiece(PIECEBLOCK Type)
 
 void ChessPiece::ClearPiece()
 {
-	for (vector<Block*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
 	{
 		delete (*it);
 

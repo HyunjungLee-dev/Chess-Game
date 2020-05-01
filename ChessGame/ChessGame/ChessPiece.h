@@ -1,18 +1,21 @@
 #pragma once
-#include"Block.h"
-class ChessPiece : public Block
+#include"Piece.h"
+class ChessPiece : public Piece
 {
 private:
 	COLOR m_ePieceColor;
-	vector<Block*> ChessPieceList;
+	vector<Piece*> ChessPieceList;
 public:
-	virtual void SetPos(int x, int y);
-	virtual void Draw(HDC hdc);
+	void SetPieceListPos(int x, int y);
+	void PieceListDraw(HDC hdc);
+	POINT GetPiecePos(int index);
 	void Init(int x, int y, COLOR color);
 	void SetColor(int index);
-	Block* AddPiece(PIECEBLOCK Type);
+	Piece* AddPiece(PIECETYPE Type);
+	int GetListSize() { return ChessPieceList.size(); }	
+	virtual void SetMoveRange() {};
+	virtual void SetImgColor(COLOR color) { m_ePieceColor = color; }
 	void ClearPiece();
-	virtual void SetColor(COLOR color){m_ePieceColor	= color;}
 	ChessPiece();
 	~ChessPiece();
 };

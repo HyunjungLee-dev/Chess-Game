@@ -11,23 +11,23 @@ void BitmapManager::Init(HWND hWnd)
 {
 	TCHAR buf[256];
 	HDC hdc = GetDC(hWnd);
-	int bpiece = 0, wpiece = 0, brdblock = 0;
+	int piece = 0, brdblock = 0;
 	for (int i = IMG_START; i < IMG_END; i++)
 	{
 
-		if (bpiece < IMG_BPIECE)
+		if (piece < IMG_BPIECE)
 		{
-			m_pBlcPiece.push_back(new Bitmap);
-			wsprintf(buf, L"Chess//block_b_0%d.bmp", bpiece);
-			m_pBlcPiece[bpiece]->Init(hdc, buf);
-			bpiece++;
+			m_pPiece.push_back(new Bitmap);
+			wsprintf(buf, L"Chess//block_b_0%d.bmp", piece);
+			m_pPiece[piece]->Init(hdc, buf);
+			piece++;
 		}
-		else if (wpiece < IMG_WPIECE)
+		else if (piece < IMG_BPIECE + IMG_WPIECE)
 		{
-			m_pWhiPiece.push_back(new Bitmap);
-			wsprintf(buf, L"Chess//block_w_0%d.bmp", wpiece);
-			m_pWhiPiece[wpiece]->Init(hdc, buf);
-			wpiece++;
+			m_pPiece.push_back(new Bitmap);
+			wsprintf(buf, L"Chess//block_w_0%d.bmp", piece- IMG_BPIECE);
+			m_pPiece[piece]->Init(hdc, buf);
+			piece++;
 		}
 		else if (brdblock < IMG_BRDBLOCK)
 		{
@@ -55,8 +55,7 @@ void BitmapManager::Release(vector<Bitmap*> bit)
 
 BitmapManager::~BitmapManager()
 {
-	Release(m_pBlcPiece);
-	Release(m_pWhiPiece);
+	Release(m_pPiece);
 	Release(m_pBrdBlock);
 
 }

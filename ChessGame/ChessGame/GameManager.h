@@ -1,15 +1,17 @@
 #pragma once
 #include"ChessBoard.h"
-#include"ChessPiece.h"
+#include"Player.h"
 class GameManager
 {
 	ChessBoard m_Chessbrd;
-	ChessPiece m_Piece[COLOR_END];
-	int m_iGameTrun;
+	Player  m_player[PLAYER_END];
+	PLAYER m_iGameTurn;
 public:
 	void Init(HWND hWnd);
 	void Draw(HDC hdc);
 	void TurnLineDraw(HDC hdc);
+	void ClickCheck(POINT point);
+	void GamePlay(HWND hWnd, POINT point);
 	GameManager();
 	~GameManager();
 };
