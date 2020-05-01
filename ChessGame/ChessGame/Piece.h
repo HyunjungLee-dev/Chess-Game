@@ -11,18 +11,21 @@ protected:
 	Bitmap* m_pBitmap;
 	PIECE m_ePieceType;
 	vector<POINT> MoveRange;
+	bool m_bMove;
 public:
 	void SetPos(int x, int y) ;
 	void Draw(HDC hdc) ; 
 	POINT GetPos() { return pos; }
 	RECT GetRect() { return m_PieceRect; }
+	vector<POINT> GetRange(){ return MoveRange; }
+	void SetMovecheck(bool b) { m_bMove = b; }
 	virtual void SetImgColor(COLOR color) = 0;
 	virtual void SetMoveRange() = 0; 
 	Piece();
 	virtual ~Piece();
 };
 
-/*Piece*/	 // 컬러필요한가
+/*Piece*/	 
 
 class King : public Piece
 {

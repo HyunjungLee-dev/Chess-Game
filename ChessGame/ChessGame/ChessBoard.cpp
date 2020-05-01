@@ -22,8 +22,8 @@ void ChessBoard::SetPos(int x, int y)
 			{
 				ChessBrd.push_back(AddBlock(BOARDBLOCK_DARK));
 			}
-			ChessBrd[index]->SetPos((j + x)* BLOCK_WIDTH
-				, (i + y) * BLOCK_HEIGHT);
+			ChessBrd[index]->SetPos(x+j * IMG_WIDTH
+				, y+i * IMG_HEIGHT);
 			index++;
 		}
 	}

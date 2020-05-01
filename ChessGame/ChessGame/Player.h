@@ -3,15 +3,20 @@
 class Player
 {
 private:
-	ChessPiece* m_Piece;
+	ChessPiece* m_PieceList;
+	Piece* m_SelectPiece;
 	COLOR m_PlayerColor;
+	SELECT m_bPieceMove;
 
 public:
 	void init(int x,int y,COLOR color);
+	void ListLineDraw(HDC hdc);
 	void SelectLineDraw(HDC hdc);
 	void CheckPiece(POINT point);
-	void MovePiece(int index);
-	ChessPiece* GetPiece() { return m_Piece; }
+	void MovePiece(POINT point);
+	ChessPiece* GetPieceList() { return m_PieceList; }
+	Piece* GetSelectPiece() { return m_SelectPiece; }
+	SELECT GetPieceMove() {return m_bPieceMove	;}
 	Player();
 	~Player();
 };

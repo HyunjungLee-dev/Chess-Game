@@ -27,8 +27,8 @@ void ChessPiece::SetPieceListPos(int x, int y)
 				{
 					ChessPieceList.push_back(AddPiece(PIECETYPE_PAWN));
 					SetColor(index);
-					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
-						, (i + y) * BLOCK_HEIGHT);
+					ChessPieceList[index]->SetPos((j + x)* IMG_WIDTH
+						, (i + y) * IMG_HEIGHT);
 					index++;
 				}
 				else if (i == 7)
@@ -46,8 +46,8 @@ void ChessPiece::SetPieceListPos(int x, int y)
 						ChessPieceList.push_back(AddPiece(PIECETYPE_KING));
 					}
 					SetColor(index);
-					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
-						, (i + y) * BLOCK_HEIGHT);
+					ChessPieceList[index]->SetPos((j + x)* IMG_WIDTH
+						, (i + y) * IMG_HEIGHT);
 					index++;
 				}
 			}
@@ -57,8 +57,8 @@ void ChessPiece::SetPieceListPos(int x, int y)
 				{
 					ChessPieceList.push_back(AddPiece(PIECETYPE_PAWN));
 					SetColor(index);
-					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
-						, (i + y) * BLOCK_HEIGHT);
+					ChessPieceList[index]->SetPos((j + x)* IMG_WIDTH
+						, (i + y) * IMG_HEIGHT);
 					index++;
 				}
 				else if (i == 0)
@@ -76,8 +76,8 @@ void ChessPiece::SetPieceListPos(int x, int y)
 						ChessPieceList.push_back(AddPiece(PIECETYPE_KING));
 					}
 					SetColor(index);
-					ChessPieceList[index]->SetPos((j + x)* BLOCK_WIDTH
-						, (i + y) * BLOCK_HEIGHT);
+					ChessPieceList[index]->SetPos(x+(j* IMG_WIDTH)
+						,  y+(i * IMG_HEIGHT));
 					index++;
 				}
 			}
@@ -88,6 +88,21 @@ void ChessPiece::SetPieceListPos(int x, int y)
 void ChessPiece::SetColor(int index)	//개별 피스의 색상 
 {
 	ChessPieceList[index]->SetImgColor(m_ePieceColor);
+}
+
+Piece* ChessPiece::SetMoveRange(POINT point)
+{
+
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	{
+		if (PtInRect(&(*it)->GetRect(), point))//
+		{
+			(*it)->SetMoveRange();
+			return (*it);
+		}
+	}
+
+
 }
 
 void ChessPiece::PieceListDraw(HDC hdc)

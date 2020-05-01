@@ -11,10 +11,10 @@ void Piece::SetPos(int x, int y)
 {
 	pos.x = x;
 	pos.y = y;
-	m_PieceRect.left = x;
-	m_PieceRect.top = y;
-	m_PieceRect.right = m_PieceRect.left + m_pBitmap->GetSize().cx;
-	m_PieceRect.bottom = m_PieceRect.top + m_pBitmap->GetSize().cy;
+	m_PieceRect.left = x*0.5;
+	m_PieceRect.top = y*0.5;
+	m_PieceRect.right = m_PieceRect.left + m_pBitmap->GetSize().cx*0.5;
+	m_PieceRect.bottom = m_PieceRect.top + m_pBitmap->GetSize().cy*0.5;
 }
 
 void Piece::Draw(HDC hdc)
@@ -39,6 +39,7 @@ void King::SetImgColor(COLOR color)
 		m_ePieceType = PIECE_B_KING;
 	m_pBitmap = BitmapManager::GetSingleton()->GetPieceImg(m_ePieceType);
 }
+
 
 void King::SetMoveRange()
 {
@@ -67,6 +68,7 @@ void Queen::SetImgColor(COLOR color)
 	m_pBitmap = BitmapManager::GetSingleton()->GetPieceImg(m_ePieceType);
 }
 
+
 void Queen::SetMoveRange()
 {
 
@@ -86,6 +88,7 @@ void Bishop::SetImgColor(COLOR color)
 	m_pBitmap = BitmapManager::GetSingleton()->GetPieceImg(m_ePieceType);
 }
 
+
 void Bishop::SetMoveRange()
 {
 
@@ -94,6 +97,7 @@ void Bishop::SetMoveRange()
 
 Pawn::Pawn()
 {
+	m_bMove = false;
 }
 
 void Pawn::SetImgColor(COLOR color)
@@ -106,9 +110,44 @@ void Pawn::SetImgColor(COLOR color)
 	m_pBitmap = BitmapManager::GetSingleton()->GetPieceImg(m_ePieceType);
 }
 
+
 void Pawn::SetMoveRange()
 {
+	POINT point;
+	MoveRange.clear();
 
+	MoveRange.push_back(pos);
+
+
+	if (!m_bMove) // 처음 위치
+	{
+		if (m_eColor == COLOR_W)
+		{
+			point = { pos.x,pos.y - 1 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+			point = { pos.x,pos.y - 2 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+		}
+		else
+		{
+			point = { pos.x,pos.y +1 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+			point = { pos.x,pos.y + 2 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+		}
+		m_bMove = true;
+	}
+	else
+	{
+		if (m_eColor == COLOR_W)
+		{
+			point = { pos.x,pos.y - 1 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+		}
+		else
+			point = { pos.x,pos.y + 1 * IMG_HEIGHT };
+			MoveRange.push_back(point);
+	}
 }
 
 

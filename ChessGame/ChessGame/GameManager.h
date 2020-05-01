@@ -6,6 +6,7 @@ class GameManager
 	ChessBoard m_Chessbrd;
 	Player  m_player[PLAYER_END];
 	PLAYER m_iGameTurn;
+	SELECT m_eSelectState;
 public:
 	void Init(HWND hWnd);
 	void Draw(HDC hdc);

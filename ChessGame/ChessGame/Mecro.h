@@ -63,6 +63,17 @@ enum IMG
 	IMG_END
 };
 
+enum SELECT
+{
+	WAIT_SELECTION,
+	SELECTING,
+	RETRY,
+	SUCCESS,
+	FAILURE
+};
 
-#define BLOCK_WIDTH 125
-#define BLOCK_HEIGHT 125
+
+
+
+#define IMG_WIDTH 125
+#define IMG_HEIGHT 125
