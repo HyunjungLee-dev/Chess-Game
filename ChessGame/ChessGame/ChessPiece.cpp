@@ -97,8 +97,7 @@ Piece* ChessPiece::SetMoveRange(POINT point, vector<Piece*> v)
 	{
 		if (PtInRect(&(*it)->GetRect(), point))//
 		{
-			(*it)->SetMoveRange();
-			(*it)->SetMovableRange(v);
+			(*it)->SetMoveRange(v);
 			return (*it);
 		}
 	}

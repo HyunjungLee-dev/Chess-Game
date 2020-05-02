@@ -30,7 +30,7 @@ public:
 
 
 	//
-	virtual void SetMoveRange() {};
+	virtual void SetMoveRange(vector<Piece*> v) {};
 	virtual void SetMovableRange(vector<Piece*> v) { };
 
 	//«ÿ¡¶

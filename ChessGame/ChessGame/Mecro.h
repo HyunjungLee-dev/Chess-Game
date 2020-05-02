@@ -72,7 +72,13 @@ enum SELECT
 	FAILURE
 };
 
+enum BREAK
+{
+	BREAK_YES,
+	BREAK_NO_PUSH,
+	BREAK_YES_PUSH,
 
+};
 
 
 #define IMG_WIDTH 125

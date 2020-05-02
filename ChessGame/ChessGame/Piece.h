@@ -11,14 +11,20 @@ protected:
 	Bitmap* m_pBitmap;
 	PIECE m_ePieceType;
 	vector<POINT> MoveRange;
+	vector<POINT> MovableRange;
+	COLOR m_eColor;
 public:
 	void SetPos(int x, int y) ;
 	void Draw(HDC hdc) ; 
 	POINT GetPos() { return pos; }
 	RECT GetRect() { return m_PieceRect; }
-	vector<POINT> GetRange(){ return MoveRange; }
+	vector<POINT> GetRange(){ return MovableRange; }
+	COLOR GetColor() { return m_eColor; }
+	POINT RangePoint(int x, int y);
+	void RangelengthWidth(vector<Piece*> v);
+	void RangediagonalLine(vector<Piece* > v);
 	virtual void SetImgColor(COLOR color) = 0;
-	virtual void SetMoveRange() = 0; 
+	virtual void SetMoveRange(vector<Piece*> v) = 0;
 	virtual void SetMovableRange(vector<Piece*> v ) = 0;
 	Piece();
 	virtual ~Piece();
@@ -28,11 +34,9 @@ public:
 
 class King : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	King();
 	virtual ~King() {};
@@ -41,11 +45,9 @@ public:
 
 class Queen : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	Queen();
 	virtual ~Queen() {};
@@ -54,11 +56,9 @@ public:
 
 class Rook : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	Rook();
 	virtual ~Rook() {};
@@ -66,11 +66,9 @@ public:
 
 class Bishop : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	Bishop();
 	virtual ~Bishop() {};
@@ -78,11 +76,9 @@ public:
 
 class Knight : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	Knight();
 	virtual ~Knight() {};
@@ -90,12 +86,10 @@ public:
 
 class Pawn : public Piece
 {
-private:
-	COLOR m_eColor;
 public:
 	bool FirstCheck();
 	virtual void SetImgColor(COLOR color);
-	virtual void SetMoveRange();
+	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
 	Pawn();
 	virtual ~Pawn() {};
