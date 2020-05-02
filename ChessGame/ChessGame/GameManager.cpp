@@ -31,12 +31,24 @@ void GameManager::TurnLineDraw(HDC hdc)
 		m_player[m_iGameTurn].ListLineDraw(hdc);
 	else if(m_eSelectState == SELECTING)
 		m_player[m_iGameTurn].SelectLineDraw(hdc);
+}
 
+vector<Piece*>  GameManager::MovableRange()
+{
+	vector<Piece*> AllPiece;
+	vector<Piece*> BlackPiece = m_player[PLAYER_BLACK].GetPieceList()->GetPiece();
+	vector<Piece*> WhitePiece  = m_player[PLAYER_WHITE].GetPieceList()->GetPiece();
+
+	AllPiece.insert(AllPiece.end(), BlackPiece.begin(), BlackPiece.end());
+	AllPiece.insert(AllPiece.end(), WhitePiece.begin(), WhitePiece.end());
+
+	return AllPiece;
+	
 }
 
 void GameManager::ClickCheck(POINT point)
 {
-		m_player[m_iGameTurn].CheckPiece(point);
+		m_player[m_iGameTurn].CheckPiece(point, MovableRange());
 		if (m_player[m_iGameTurn].GetPieceMove() == SUCCESS)
 		{
 			if (m_iGameTurn == PLAYER_WHITE)
@@ -45,12 +57,10 @@ void GameManager::ClickCheck(POINT point)
 				m_iGameTurn = PLAYER_WHITE;
 			m_eSelectState = WAIT_SELECTION;
 		}
-		else if(m_player[m_iGameTurn].GetPieceMove() == RETRY)
+		else if(m_player[m_iGameTurn].GetPieceMove() == RETRY )
 			m_eSelectState = WAIT_SELECTION;
 		else if (m_player[m_iGameTurn].GetPieceMove() == FAILURE)
-		{
-
-		}
+			m_eSelectState = SELECTING;
 }
 
 

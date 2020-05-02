@@ -12,7 +12,7 @@ public:
 	void init(int x,int y,COLOR color);
 	void ListLineDraw(HDC hdc);
 	void SelectLineDraw(HDC hdc);
-	void CheckPiece(POINT point);
+	void CheckPiece(POINT point, vector<Piece*> v);
 	void MovePiece(POINT point);
 	ChessPiece* GetPieceList() { return m_PieceList; }
 	Piece* GetSelectPiece() { return m_SelectPiece; }

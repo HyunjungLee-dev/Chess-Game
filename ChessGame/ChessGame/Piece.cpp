@@ -52,6 +52,11 @@ void King::SetMoveRange()
 	}
 }
 
+void King::SetMovableRange(vector<Piece*> v)
+{
+
+}
+
 
 
 Queen::Queen()
@@ -74,6 +79,12 @@ void Queen::SetMoveRange()
 
 }
 
+void Queen::SetMovableRange(vector<Piece*> v)
+{
+
+}
+
+
 Bishop::Bishop()
 {
 }
@@ -95,9 +106,15 @@ void Bishop::SetMoveRange()
 }
 
 
+void Bishop::SetMovableRange(vector<Piece*> v)
+{
+
+}
+
+
+
 Pawn::Pawn()
 {
-	m_bMove = false;
 }
 
 void Pawn::SetImgColor(COLOR color)
@@ -110,6 +127,23 @@ void Pawn::SetImgColor(COLOR color)
 	m_pBitmap = BitmapManager::GetSingleton()->GetPieceImg(m_ePieceType);
 }
 
+bool Pawn::FirstCheck()
+{
+	if (m_eColor == COLOR_W)
+	{
+		if (pos.y / IMG_HEIGHT == 6)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		if (pos.y / IMG_HEIGHT == 1)
+			return true;
+		else
+			return false;
+	}
+}
 
 void Pawn::SetMoveRange()
 {
@@ -118,8 +152,7 @@ void Pawn::SetMoveRange()
 
 	MoveRange.push_back(pos);
 
-
-	if (!m_bMove) // 처음 위치
+	if (FirstCheck())
 	{
 		if (m_eColor == COLOR_W)
 		{
@@ -135,7 +168,6 @@ void Pawn::SetMoveRange()
 			point = { pos.x,pos.y + 2 * IMG_HEIGHT };
 			MoveRange.push_back(point);
 		}
-		m_bMove = true;
 	}
 	else
 	{
@@ -150,6 +182,43 @@ void Pawn::SetMoveRange()
 	}
 }
 
+
+void Pawn::SetMovableRange(vector<Piece*> v)
+{
+	vector<POINT> MovableRange;
+	MovableRange.push_back(pos);
+
+
+	bool bCheck = false;
+
+	for (auto it = MoveRange.begin(); it != MoveRange.end(); it++)
+	{
+		for (auto iter = v.begin(); iter != v.end(); iter++)
+		{
+			if ((*iter)->GetPos().x == (*it).x && ((*iter)->GetPos().y == (*it).y))
+			{
+				bCheck = false;
+				break;
+			}
+			else
+				bCheck = true;
+		}
+		if (bCheck == true)
+			MovableRange.push_back((*it));
+
+	if (m_eColor == COLOR_W) // 나중에 대각선 체크 용
+	{
+		;
+	}
+	else
+	{
+		;
+	}
+
+	}
+	MoveRange.clear();
+	MoveRange = MovableRange;
+}
 
 
 Knight::Knight()
@@ -174,6 +243,12 @@ void Knight::SetMoveRange()
 }
 
 
+void Knight::SetMovableRange(vector<Piece*> v)
+{
+
+}
+
+
 Rook::Rook()
 {
 }
@@ -191,6 +266,12 @@ void Rook::SetImgColor(COLOR color)
 
 
 void Rook::SetMoveRange()
+{
+
+}
+
+
+void Rook::SetMovableRange(vector<Piece*> v)
 {
 
 }

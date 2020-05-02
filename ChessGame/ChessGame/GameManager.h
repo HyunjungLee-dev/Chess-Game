@@ -13,6 +13,7 @@ public:
 	void TurnLineDraw(HDC hdc);
 	void ClickCheck(POINT point);
 	void GamePlay(HWND hWnd, POINT point);
+	vector<Piece*> MovableRange();
 	GameManager();
 	~GameManager();
 };

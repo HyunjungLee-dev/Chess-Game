@@ -6,16 +6,34 @@ private:
 	COLOR m_ePieceColor;
 	vector<Piece*> ChessPieceList;
 public:
+	//초기 설정
 	void Init(int x, int y, COLOR color);
-	Piece* AddPiece(PIECETYPE Type);
 	void SetPieceListPos(int x, int y);
-	void SetColor(int index);
+	Piece* AddPiece(PIECETYPE Type);
 	virtual void SetImgColor(COLOR color) { m_ePieceColor = color; }
+	void SetColor(int index);
+
+	//그리기
 	void PieceListDraw(HDC hdc);
+
+	//조회
+	bool SearchPiecePos(POINT point);
+	
+
+	//Getter 
+	vector<Piece*> GetPiece() { return ChessPieceList; }
 	POINT GetPiecePos(int index);
 	int GetListSize() { return ChessPieceList.size(); }
+
+	//Setter
+	Piece* SetMoveRange(POINT point, vector<Piece*> v);
+
+
+	//
 	virtual void SetMoveRange() {};
-	Piece* SetMoveRange(POINT point);
+	virtual void SetMovableRange(vector<Piece*> v) { };
+
+	//해제
 	void ClearPiece();
 	ChessPiece();
 	~ChessPiece();

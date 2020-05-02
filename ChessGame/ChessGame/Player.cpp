@@ -43,27 +43,32 @@ void Player::SelectLineDraw(HDC hdc)
 	}
 }
 
-void Player::CheckPiece(POINT point)
+void Player::CheckPiece(POINT point, vector<Piece*> v)
 {
 	if (m_SelectPiece != NULL)
-	{
-		if (PtInRect(&m_SelectPiece->GetRect(), point))
 		{
-			m_SelectPiece->SetMovecheck(false);
-			m_SelectPiece = NULL;
-			m_bPieceMove = RETRY;
+				if (PtInRect(&m_SelectPiece->GetRect(), point))
+				{
+					m_SelectPiece = NULL;
+					m_bPieceMove = RETRY;
+				}
+				else
+				{
+					MovePiece(point);
+				}
 		}
 		else
 		{
-			MovePiece(point);
+			if (!m_PieceList->SearchPiecePos(point))
+			{
+				m_bPieceMove = RETRY;
+			}
+			else
+			{
+				m_bPieceMove = FAILURE;
+				m_SelectPiece = m_PieceList->SetMoveRange(point, v);
+			}
 		}
-	}
-	else
-	{
-		m_SelectPiece = m_PieceList->SetMoveRange(point);
-		m_bPieceMove = FAILURE;
-	}
-	
 }
 
 void Player::MovePiece(POINT point)

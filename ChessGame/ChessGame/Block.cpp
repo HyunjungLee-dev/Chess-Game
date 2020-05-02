@@ -25,10 +25,10 @@ void Light::SetPos(int x, int y)
 {
 	pos.x = x;
 	pos.y = y;
-	m_brdBckRect.left = x;
-	m_brdBckRect.top = y;
-	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx;
-	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy;
+	m_brdBckRect.left = x*0.5;
+	m_brdBckRect.top = y*0.5;
+	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx*0.5;
+	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy*0.5;
 }
 
 void Light::Draw(HDC hdc)
@@ -50,8 +50,8 @@ void Dark::SetPos(int x, int y)
 
 	m_brdBckRect.left = x;
 	m_brdBckRect.top = y;
-	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx;
-	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy;
+	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx*0.5;
+	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy*0.5;
 }
 
 void Dark::Draw(HDC hdc)
@@ -76,8 +76,8 @@ void Line::SetPos(int x, int y)
 
 	m_brdBckRect.left = x;
 	m_brdBckRect.top = y;
-	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx;
-	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy;
+	m_brdBckRect.right = m_brdBckRect.left + m_pBitmap->GetSize().cx*0.5;
+	m_brdBckRect.bottom = m_brdBckRect.top + m_pBitmap->GetSize().cy*0.5;
 }
 
 void Line::Draw(HDC hdc)

@@ -1,9 +1,6 @@
-﻿  ChessMain.cpp
-  ChessPiece.cpp
-  GameManager.cpp
-  Player.cpp
-d:\github\chess-game\chessgame\chessgame\player.cpp(36): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  코드를 생성하고 있습니다...
-d:\github\chess-game\chessgame\chessgame\chesspiece.cpp(106): warning C4715: 'ChessPiece::SetMoveRange': 모든 제어 경로에서 값을 반환하지는 않습니다.
-d:\github\chess-game\chessgame\chessgame\chesspiece.cpp(147): warning C4715: 'ChessPiece::AddPiece': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  ChessGame.vcxproj -> D:\Github\Chess-Game\ChessGame\Debug\ChessGame.exe
+﻿  Piece.cpp
+c:\users\lee\desktop\chessgame\chessgame\piece.cpp(14): warning C4244: '=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\lee\desktop\chessgame\chessgame\piece.cpp(15): warning C4244: '=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\lee\desktop\chessgame\chessgame\piece.cpp(16): warning C4244: '=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\lee\desktop\chessgame\chessgame\piece.cpp(17): warning C4244: '=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ChessGame.vcxproj -> C:\Users\LEE\Desktop\ChessGame\Debug\ChessGame.exe
