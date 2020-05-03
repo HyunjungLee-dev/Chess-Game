@@ -18,7 +18,9 @@ public:
 
 	//조회
 	bool SearchPiecePos(POINT point);
+	bool SearchKing(POINT point);
 	
+	void UpgradePawn();
 
 	//Getter 
 	vector<Piece*> GetPiece() { return ChessPieceList; }
@@ -34,6 +36,7 @@ public:
 	virtual void SetMovableRange(vector<Piece*> v) { };
 
 	//해제
+	void ErasePiece(Piece* piece);
 	void ClearPiece();
 	ChessPiece();
 	~ChessPiece();

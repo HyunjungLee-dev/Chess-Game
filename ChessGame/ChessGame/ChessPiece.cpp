@@ -156,6 +156,82 @@ bool ChessPiece::SearchPiecePos(POINT point)
 	return false;
 }
 
+void ChessPiece::UpgradePawn()
+{
+	PIECE piece;
+	int end_y;
+	POINT point;
+	bool UpgradePawn = false;
+
+	if (m_ePieceColor == COLOR_W)
+	{
+		piece = PIECE_W_PAWN;
+		end_y = 0;
+	}
+	else
+	{
+		piece = PIECE_B_PAWN;
+		end_y = IMG_HEIGHT * 7;
+	}
+
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	{
+		if ((*it)->GetPieceType() == piece)
+		{
+			if ((*it)->GetPos().y == end_y)
+			{
+				point.x = (*it)->GetPos().x;
+				point.y = (*it)->GetPos().y;
+				ChessPieceList.erase(it);
+				UpgradePawn = true;
+				break;
+			}
+		}
+	}
+	if (UpgradePawn)
+	{
+		ChessPieceList.push_back(AddPiece(PIECETYPE_QUEEN));
+		ChessPieceList.back()->SetImgColor(m_ePieceColor);
+		ChessPieceList.back()->SetPos(point.x, point.y);
+	}
+
+}
+
+bool ChessPiece::SearchKing(POINT point)
+{
+	PIECE piece;
+	if (m_ePieceColor == COLOR_W)
+		 piece = PIECE_W_KING;
+	else
+		piece = PIECE_B_KING;
+
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	{
+		if ((*it)->GetPieceType() == piece)
+		{
+			if ((*it)->GetPos().x ==point.x && (*it)->GetPos().y == point.y)//
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void ChessPiece::ErasePiece(Piece* piece)
+{
+	RECT rcTemp = { 0 };
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	{
+		if (IntersectRect(&rcTemp,&(*it)->GetRect(), &piece->GetRect()))
+		{
+			ChessPieceList.erase(it);
+			break;
+		}
+	}
+}
+
+
 void ChessPiece::ClearPiece()
 {
 	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)

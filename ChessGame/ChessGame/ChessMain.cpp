@@ -48,14 +48,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		gameManager.Init(hWnd);
 		return 0;
-	case WM_TIMER:
-		switch (wParam) {
-		case 1:
-			break;
-		case 2:
-			break;
-		}
-		return 0;
 	case WM_LBUTTONDOWN:
 		point.x = LOWORD(lParam);
 		point.y = HIWORD(lParam);
@@ -67,6 +59,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		EndPaint(hWnd, &ps);
 		return 0;
 	case WM_DESTROY:
+		BitmapManager::Release();
 		PostQuitMessage(0);
 		return 0;
 	}

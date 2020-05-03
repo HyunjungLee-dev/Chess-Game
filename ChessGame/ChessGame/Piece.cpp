@@ -435,17 +435,47 @@ void Pawn::SetMovableRange(vector<Piece*> v)
 		if (bCheck == true)
 			MovableRange.push_back((*it));
 
-	if (m_eColor == COLOR_W) // 나중에 대각선 체크 용
-	{
-		;
-	}
-	else
-	{
-		;
-	}
+		POINT point;
+		for (auto iter = v.begin(); iter != v.end(); iter++)
+		{
+			if (m_eColor == COLOR_W) // 나중에 대각선 체크 용
+			{
 
+				if ((*iter)->GetColor() == COLOR_B)
+				{
+					if (pos.x - IMG_WIDTH == (*iter)->GetPos().x && pos.y - IMG_HEIGHT == (*iter)->GetPos().y)
+					{
+						point = { pos.x - IMG_WIDTH , pos.y - IMG_HEIGHT };
+						MovableRange.push_back(point);
+					}
+					else if (pos.x + IMG_WIDTH == (*iter)->GetPos().x && pos.y - IMG_HEIGHT == (*iter)->GetPos().y)
+					{
+						point = { pos.x + IMG_WIDTH , pos.y - IMG_HEIGHT };
+						MovableRange.push_back(point);
+					}
+				}
+			}
+			else
+			{
+				if ((*iter)->GetColor() == COLOR_W)
+				{
+					if (pos.x - IMG_WIDTH == (*iter)->GetPos().x && pos.y + IMG_HEIGHT == (*iter)->GetPos().y)
+					{
+						point = { pos.x - IMG_WIDTH , pos.y + IMG_HEIGHT };
+						MovableRange.push_back(point);
+					}
+					else if (pos.x + IMG_WIDTH == (*iter)->GetPos().x && pos.y + IMG_HEIGHT == (*iter)->GetPos().y)
+					{
+						point = { pos.x + IMG_WIDTH , pos.y + IMG_HEIGHT };
+						MovableRange.push_back(point);
+					}
+				}
+			}
+
+		}
 	}
 }
+
 
 /*Knight*/
 

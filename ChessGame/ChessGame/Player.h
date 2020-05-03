@@ -13,10 +13,11 @@ public:
 	void ListLineDraw(HDC hdc);
 	void SelectLineDraw(HDC hdc);
 	void CheckPiece(POINT point, vector<Piece*> v);
-	void MovePiece(POINT point);
+	void MovePiece(POINT point, vector<Piece*> v);
 	ChessPiece* GetPieceList() { return m_PieceList; }
 	Piece* GetSelectPiece() { return m_SelectPiece; }
 	SELECT GetPieceMove() {return m_bPieceMove	;}
+	void SetNULLSelectPiece() { m_SelectPiece = NULL; }
 	Player();
 	~Player();
 };

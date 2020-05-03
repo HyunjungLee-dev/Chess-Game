@@ -43,6 +43,7 @@ void Player::SelectLineDraw(HDC hdc)
 	}
 }
 
+
 void Player::CheckPiece(POINT point, vector<Piece*> v)
 {
 	if (m_SelectPiece != NULL)
@@ -54,7 +55,7 @@ void Player::CheckPiece(POINT point, vector<Piece*> v)
 				}
 				else
 				{
-					MovePiece(point);
+					MovePiece(point,v);
 				}
 		}
 		else
@@ -71,7 +72,7 @@ void Player::CheckPiece(POINT point, vector<Piece*> v)
 		}
 }
 
-void Player::MovePiece(POINT point)
+void Player::MovePiece(POINT point, vector<Piece*> v)
 {
 	int size = m_SelectPiece->GetRange().size();
 	POINT pos;
@@ -84,7 +85,7 @@ void Player::MovePiece(POINT point)
 		{
 			m_SelectPiece->SetPos(pos.x, pos.y);
 			m_bPieceMove = SUCCESS;
-			m_SelectPiece = NULL;
+			 m_SelectPiece->SetMoveRange(v);
 			return;
 		}
 		else

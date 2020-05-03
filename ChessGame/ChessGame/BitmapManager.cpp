@@ -42,7 +42,7 @@ void BitmapManager::Init(HWND hWnd)
 	ReleaseDC(hWnd, hdc);
 }
 
-void BitmapManager::Release(vector<Bitmap*> bit)
+void BitmapManager::Clear(vector<Bitmap*> bit)
 {
 	for (vector<Bitmap*>::iterator it = bit.begin(); it != bit.end(); it++)
 	{
@@ -55,7 +55,7 @@ void BitmapManager::Release(vector<Bitmap*> bit)
 
 BitmapManager::~BitmapManager()
 {
-	Release(m_pPiece);
-	Release(m_pBrdBlock);
+	Clear(m_pPiece);
+	Clear(m_pBrdBlock);
 
 }

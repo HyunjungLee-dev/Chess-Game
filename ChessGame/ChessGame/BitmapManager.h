@@ -11,7 +11,7 @@ class BitmapManager : public Singleton< BitmapManager>
 
 public:
 	void Init(HWND hWnd);
-	void Release(vector<Bitmap*> bit);
+	void Clear(vector<Bitmap*> bit);
 
 	Bitmap* GetPieceImg(PIECE Btype) { return m_pPiece[Btype]; }
 	Bitmap* GetBrdBImg(BOARDBLOCK Btype) { return m_pBrdBlock[Btype]; }

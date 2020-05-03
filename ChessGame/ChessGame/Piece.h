@@ -21,6 +21,7 @@ public:
 	vector<POINT> GetRange(){ return MovableRange; }
 	COLOR GetColor() { return m_eColor; }
 	POINT RangePoint(int x, int y);
+	PIECE GetPieceType() {return m_ePieceType;}
 	void RangelengthWidth(vector<Piece*> v);
 	void RangediagonalLine(vector<Piece* > v);
 	virtual void SetImgColor(COLOR color) = 0;

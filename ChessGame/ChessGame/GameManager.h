@@ -11,7 +11,9 @@ public:
 	void Init(HWND hWnd);
 	void Draw(HDC hdc);
 	void TurnLineDraw(HDC hdc);
-	void ClickCheck(POINT point);
+	void ClickCheck(POINT point, HWND hWnd);
+	void Catch();
+	void Check(HWND hWnd);
 	void GamePlay(HWND hWnd, POINT point);
 	vector<Piece*> MovableRange();
 	GameManager();
