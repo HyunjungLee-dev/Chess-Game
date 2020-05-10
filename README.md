@@ -1,2 +1,2 @@
 # ChessGame
-WinApi 
+WinApi Chess game 

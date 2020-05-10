@@ -18,6 +18,7 @@ void Piece::SetPos(int x, int y)
 	m_PieceRect.bottom = m_PieceRect.top + m_pBitmap->GetSize().cy*0.5;
 }
 
+
 void Piece::Draw(HDC hdc)
 {
 	m_pBitmap->Draw(hdc, pos.x, pos.y);
@@ -139,7 +140,6 @@ void King::SetMoveRange(vector<Piece*> v)
 	MoveRange.push_back(RangePoint(-1 * IMG_WIDTH, +1 * IMG_HEIGHT));
 
 	SetMovableRange(v);
-	MoveRange.clear();
 	UpdateKingRange(v);
 }
 
@@ -195,9 +195,11 @@ void King::UpdateKingRange(vector<Piece*> v)
 		if ((*iter)->GetColor() == piece)
 		{
 			vector<POINT> point;
-			point = (*iter)->GetRange();
+			point = (*iter)->GetMovableRange();
 			for (auto it = point.begin(); it != point.end(); it++)
 			{
+				if (it == point.begin())
+					continue;
 				for (auto kingRange = MovableRange.begin(); kingRange != MovableRange.end(); kingRange++)
 				{
 					if ((*it).x == (*kingRange).x && (*it).y == (*kingRange).y)
