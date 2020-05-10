@@ -17,10 +17,11 @@ public:
 	void PieceListDraw(HDC hdc);
 
 	//Á¶È¸
-	bool SearchPiecePos(POINT point);
+	bool SearchPiecePos(POINT point);	
 	bool SearchKing(POINT point);
-	
+	bool CheckKingRange(POINT point, vector<Piece*> v);
 	void UpgradePawn();
+
 
 	//Getter 
 	vector<Piece*> GetPiece() { return ChessPieceList; }

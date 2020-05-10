@@ -1,0 +1,6 @@
+﻿  ChessMain.cpp
+c:\users\a07\documents\github\hyunjunglee\chessgame\chessgame\chesspiece.h(29): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameManager.cpp
+c:\users\a07\documents\github\hyunjunglee\chessgame\chessgame\chesspiece.h(29): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  ChessGame.vcxproj -> C:\Users\A07\Documents\GitHub\HyunjungLEE\ChessGame\x64\Debug\ChessGame.exe

@@ -92,7 +92,6 @@ void ChessPiece::SetColor(int index)	//개별 피스의 색상
 
 Piece* ChessPiece::SetMoveRange(POINT point, vector<Piece*> v)
 {
-
 	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
 	{
 		if (PtInRect(&(*it)->GetRect(), point))//
@@ -105,10 +104,10 @@ Piece* ChessPiece::SetMoveRange(POINT point, vector<Piece*> v)
 
 void ChessPiece::PieceListDraw(HDC hdc)
 {
-	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
-	{
-		(*it)->Draw(hdc);
-	}
+for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+{
+	(*it)->Draw(hdc);
+}
 }
 
 POINT ChessPiece::GetPiecePos(int index)
@@ -148,7 +147,7 @@ bool ChessPiece::SearchPiecePos(POINT point)
 {
 	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
 	{
-		if (PtInRect(&(*it)->GetRect(), point))//
+		if (PtInRect(&(*it)->GetRect(), point))
 		{
 			return true;
 		}
@@ -197,6 +196,8 @@ void ChessPiece::UpgradePawn()
 
 }
 
+
+
 bool ChessPiece::SearchKing(POINT point)
 {
 	PIECE piece;
@@ -209,13 +210,36 @@ bool ChessPiece::SearchKing(POINT point)
 	{
 		if ((*it)->GetPieceType() == piece)
 		{
-			if ((*it)->GetPos().x ==point.x && (*it)->GetPos().y == point.y)//
+			if ((*it)->GetPos().x ==point.x && (*it)->GetPos().y == point.y)
 			{
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+bool ChessPiece::CheckKingRange(POINT point, vector<Piece*> v)
+{
+
+	PIECE piece;
+	if (m_ePieceColor == COLOR_W)
+		piece = PIECE_W_KING;
+	else
+		piece = PIECE_B_KING;
+
+	for (vector<Piece*>::iterator it = ChessPieceList.begin(); it != ChessPieceList.end(); it++)
+	{
+		if ((*it)->GetPieceType() == piece)
+		{
+			(*it)->SetMoveRange(v);
+			if ((*it)->GetRange().size() == 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
 void ChessPiece::ErasePiece(Piece* piece)

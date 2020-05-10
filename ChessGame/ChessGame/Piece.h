@@ -39,6 +39,7 @@ public:
 	virtual void SetImgColor(COLOR color);
 	virtual void SetMoveRange(vector<Piece*> v);
 	virtual void SetMovableRange(vector<Piece*> v);
+	void UpdateKingRange(vector<Piece*> v);
 	King();
 	virtual ~King() {};
 

@@ -85,7 +85,7 @@ void Player::MovePiece(POINT point, vector<Piece*> v)
 		{
 			m_SelectPiece->SetPos(pos.x, pos.y);
 			m_bPieceMove = SUCCESS;
-			 m_SelectPiece->SetMoveRange(v);
+			m_SelectPiece->SetMoveRange(v);
 			return;
 		}
 		else
